@@ -1,16 +1,13 @@
 package com.sarthak.chattapp.views;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import java.awt.Color;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-
 import com.sarthak.chattapp.dao.userDao;
 import com.sarthak.chattapp.dto.userDto;
-
+import com.sarthak.chattapp.utils.UserInfo;
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.JPasswordField;
@@ -32,6 +29,7 @@ public class userScreen extends JFrame{
 		userDao userdao=new userDao();
 		userDto userdto=new userDto(userid,password);
 		String message="Welcome "+userid;
+		UserInfo.USER_NAME=userid;
 		try {
 			boolean result=userdao.isLogin(userdto);
 			if(result) {

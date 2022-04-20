@@ -13,6 +13,10 @@ import java.awt.Color;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import java.awt.event.ActionListener;
+import java.io.IOException;
+import java.net.UnknownHostException;
+import java.awt.event.ActionEvent;
 
 public class DashBoard extends JFrame {
 	private JPanel contentPane;
@@ -30,12 +34,43 @@ public DashBoard(String message) {
 		menuBar.add(mnNewMenu);
 		
 		JMenuItem mntmNewMenuItem = new JMenuItem("Start Chat");
+		mntmNewMenuItem.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					new ClientChatScreen();
+				} catch (UnknownHostException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
 		mnNewMenu.add(mntmNewMenuItem);
+		
+		JMenu mnNewMenu_2 = new JMenu("Profile");
+		menuBar.add(mnNewMenu_2);
+		
+		JMenuItem change_pass = new JMenuItem("Change Password");
+		change_pass.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new ChangePass();
+			}
+		});
+		mnNewMenu_2.add(change_pass);
 		
 		JMenu mnNewMenu_1 = new JMenu("LOGOUT");
 		menuBar.add(mnNewMenu_1);
 		
 		JMenuItem mntmNewMenuItem_1 = new JMenuItem("Logout");
+		mntmNewMenuItem_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new userScreen();
+				setVisible(false);
+				dispose();
+			}
+		});
 		mnNewMenu_1.add(mntmNewMenuItem_1);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
